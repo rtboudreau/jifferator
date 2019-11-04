@@ -1,7 +1,8 @@
 *:before,
 *:after,
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
@@ -10,8 +11,35 @@ body {
   font-weight: bold;
   font-size: 24px;
   color: #fff;
-  background-color: #000;
   margin: 0;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	-webkit-animation: gradientBG 20s ease infinite;
+	        animation: gradientBG 20s ease infinite;
+}
+
+@-webkit-keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 input,
@@ -29,11 +57,31 @@ button {
   padding: 0;
 }
 
+kbd {
+    background-color: #eee;
+    border-radius: 3px;
+    border: 1px solid #b4b4b4;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+    color: #333;
+    display: inline-block;
+    font-size: .85em;
+    font-weight: 700;
+    line-height: 1;
+    padding: 2px 4px;
+    white-space: nowrap;
+   }
+
 .page {
   min-height: 100vh;
   padding: 5vh 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .header {
@@ -69,6 +117,18 @@ button {
   padding: 0;
 }
 
+.input::-webkit-input-placeholder {
+  color: #323232;
+}
+
+.input::-moz-placeholder {
+  color: #323232;
+}
+
+.input::-ms-input-placeholder {
+  color: #323232;
+}
+
 .input::placeholder {
   color: #323232;
 }
@@ -95,28 +155,35 @@ button {
   width: 100%;
   max-width: 480px;
   max-height: 480px;
-  box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.68);
+  -webkit-box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.2);
   opacity: 0;
-  transform: scale(0) rotate(0deg);
+  -webkit-transform: scale(0) rotate(0deg);
+          transform: scale(0) rotate(0deg);
+  -webkit-transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
   outline: 1px solid transparent;
 }
 
 .loaded {
   opacity: 1;
-  transform: scale(1) rotate(0deg);
+  -webkit-transform: scale(1) rotate(0deg);
+          transform: scale(1) rotate(0deg);
 }
 
 .loaded:nth-of-type(2n) {
-  transform: scale(1) rotate(5deg);
+  -webkit-transform: scale(1) rotate(5deg);
+          transform: scale(1) rotate(5deg);
 }
 
 .loaded:nth-of-type(3n) {
-  transform: scale(1) rotate(-5deg);
+  -webkit-transform: scale(1) rotate(-5deg);
+          transform: scale(1) rotate(-5deg);
 }
 
 .loaded:nth-of-type(4n) {
-  transform: scale(1) rotate(7deg);
+  -webkit-transform: scale(1) rotate(7deg);
+          transform: scale(1) rotate(7deg);
 }
 
 @media (max-width: 480px) {

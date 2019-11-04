@@ -38,6 +38,10 @@ class App extends Component {
     };
   }
 
+  componentDidMount(){
+   this.textInput.focus();
+}
+
   // function that searchs giphy api using fetch
   // places search term in query url
 
@@ -48,7 +52,7 @@ class App extends Component {
     });
     try {
       const response = await fetch(
-        `https://api.giphy.com/v1/gifs/search?api_key=slbFxyIcr4Ot9xQePC0DNFAIm3ddIIE1&q=${searchTerm}&limit=25&offset=0&rating=G&lang=en`
+        `https://api.giphy.com/v1/gifs/search?api_key=slbFxyIcr4Ot9xQePC0DNFAIm3ddIIE1&q=${searchTerm}&limit=40&offset=0&rating=G&lang=en`
       );
       //convert response into json data
       const {data} = await response.json();
@@ -61,8 +65,7 @@ class App extends Component {
 
       //grab random result from images
       const randomGif = randomChoice(data);
-      console.log({randomGif});
-      console.log(data);
+      const hitEnter = <p>Hit <kbd>enter</kbd> to see more {searchTerm} gifs</p>;
 
       this.setState((prevState, props) => ({
         ...prevState,
@@ -71,7 +74,7 @@ class App extends Component {
         gifs: [...prevState.gifs, randomGif],
         //turn off loading icon
         loading: false,
-        hintText: `Hit enter to see more ${searchTerm}`
+        hintText: <div>{hitEnter}</div>
       }));
     } catch (error) {
       this.setState((prevState, props) => ({
@@ -85,13 +88,14 @@ class App extends Component {
 
   handleChange = event => {
     const {value} = event.target;
+    const hitEnter = <p>Hit <kbd>enter</kbd> to search {value}</p>;
     this.setState((prevState, props) => ({
       //take old props and spread them out
       ...prevState,
       //overwrite ones we want afterwards
       searchTerm: value,
       // set hint text only when more than 2 characters in input
-      hintText: value.length > 2 ? `Hit enter to search ${value}` : ''
+      hintText: value.length > 2 ? <div>{hitEnter}</div> : ''
     }));
   };
 
